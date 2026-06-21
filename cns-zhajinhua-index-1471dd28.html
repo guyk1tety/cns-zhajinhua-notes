@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>炸金花 · 棋牌玩法专题</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f1f6f8;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: #1e2b32;
+      padding: 1.6rem 1.2rem;
+    }
+
+    .wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* 横幅区 */
+    .hero {
+      background: linear-gradient(145deg, #1d3e47 0%, #275f6a 100%);
+      padding: 2.8rem 2rem 3.2rem;
+      border-radius: 2rem 2rem 1.2rem 1.2rem;
+      box-shadow: 0 10px 28px rgba(30, 60, 70, 0.18);
+      margin-bottom: 2.8rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 240px;
+      height: 240px;
+      background: rgba(80, 190, 190, 0.1);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: #d7f2f0;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .hero .sub {
+      font-size: 1.1rem;
+      color: #b1ddd9;
+      border-left: 4px solid #58bfb8;
+      padding-left: 1rem;
+      margin-top: 0.4rem;
+    }
+
+    /* 卡片网格 */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin-bottom: 2.6rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 1.4rem;
+      padding: 1.8rem 1.6rem 2rem;
+      box-shadow: 0 4px 14px rgba(35, 70, 75, 0.07);
+      transition: box-shadow 0.2s ease;
+      border: 1px solid rgba(70, 150, 145, 0.08);
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 20px rgba(30, 90, 90, 0.08);
+    }
+
+    .card h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #1d4f58;
+      margin-bottom: 0.9rem;
+    }
+
+    .card h3 i {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      background: #246a73;
+      border-radius: 40%;
+      color: white;
+      text-align: center;
+      line-height: 28px;
+      font-size: 1rem;
+      font-style: normal;
+      margin-right: 0.3rem;
+    }
+
+    .card p {
+      color: #2b4149;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .card .tag {
+      margin-top: 0.8rem;
+      display: inline-block;
+      background: #e3f1ef;
+      color: #1d5a5f;
+      font-size: 0.8rem;
+      padding: 0.15rem 0.8rem;
+      border-radius: 30px;
+      font-weight: 500;
+    }
+
+    /* 单栏段落 */
+    .insight {
+      background: #eaf4f2;
+      padding: 2rem 2rem 2.2rem;
+      border-radius: 1.8rem;
+      margin: 2rem 0 2.4rem;
+      border-left: 6px solid #419f9c;
+    }
+
+    .insight p {
+      font-size: 1.05rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .insight p:last-child {
+      margin-bottom: 0;
+    }
+
+    .insight strong {
+      color: #14555c;
+    }
+
+    /* FAQ 摘要 */
+    .faq-mini {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2.2rem;
+      background: #ffffff;
+      border-radius: 1.6rem;
+      padding: 1.6rem 2rem;
+      margin: 2.2rem 0 2rem;
+      border: 1px solid #c6dfdb;
+    }
+
+    .faq-item {
+      flex: 1 1 180px;
+    }
+
+    .faq-item span.q {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1d5f62;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-item span.a {
+      color: #38535a;
+      font-size: 0.95rem;
+    }
+
+    /* 页尾 */
+    .footer-note {
+      margin-top: 2.8rem;
+      padding: 1.6rem 1rem;
+      border-top: 1px solid #c7dfdb;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #37555a;
+    }
+
+    .footer-note a {
+      color: #1b6f70;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted #34817e;
+    }
+
+    .footer-note a:hover {
+      color: #0b4e4f;
+      border-bottom: 1px solid #236b68;
+    }
+
+    /* 响应式 */
+    @media (max-width: 680px) {
+      body {
+        padding: 1rem 0.8rem;
+      }
+
+      .hero {
+        padding: 2rem 1.2rem 2.4rem;
+        border-radius: 1.6rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+      }
+
+      .card {
+        padding: 1.4rem 1.2rem;
+      }
+
+      .insight {
+        padding: 1.5rem 1.2rem;
+        margin: 1.6rem 0;
+      }
+
+      .faq-mini {
+        flex-direction: column;
+        padding: 1.2rem 1.2rem;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <!-- 横幅 -->
+  <div class="hero">
+    <h1>炸金花 · 规则与变种</h1>
+    <div class="sub">从牌型概率到临场判断 · 棋牌文化笔记</div>
+  </div>
+
+  <!-- 两栏卡片：背景 + 特点 -->
+  <div class="grid-2">
+    <div class="card">
+      <h3><i>♠</i> 玩法渊源</h3>
+      <p>炸金花流行于国内民间，以三张手牌比大小为核心。规则简洁但牌型组合却暗藏博弈深度：从豹子到散牌，每一种排列都对应着不同的心理策略。</p>
+      <span class="tag">三张牌 · 心理战</span>
+    </div>
+    <div class="card">
+      <h3><i>♦</i> 牌局辨识</h3>
+      <p>许多玩家初识此游戏时，最想快速了解的是牌型强弱与特殊牌（如235可胜豹子）的边界条件。明确规则能帮助参与者更专注于决策而非模糊的传闻。</p>
+      <span class="tag">牌型梯度 · 特殊牌</span>
+    </div>
+  </div>
+
+  <!-- 背景说明 + 三段自然介绍（融合） -->
+  <div class="insight">
+    <p><strong>游戏场景与定位</strong> 炸金花并非单纯依赖运气的游戏，它融合了风险计算、表情解读和押注节奏。无论是朋友聚会还是线上对局，对规则形成统一认知是公平体验的前提。</p>
+    <p><strong>从入门到判断</strong> 了解基本牌型（豹子、同花顺、同花、顺子等）之后，大部分玩家会关注“什么时候该加注、什么时候弃牌”。实际对局中位置、人数、底池比例都会影响选择，这也是炸金花区别于纯赌博的魅力所在。</p>
+    <p><strong>变化与本地化</strong> 不同地区存在“闷牌”“喜钱”“轮换庄家”等细节变体，但核心框架一致。如果你希望查看完整规则、牌型列表以及常见争议说明，可以参阅专题站 <a href="https://cns-zhajinhua.com">炸金花</a> 中的梳理内容。</p>
+  </div>
+
+  <!-- 小卡片：特点、场景 -->
+  <div class="grid-2">
+    <div class="card">
+      <h3><i>♣</i> 技术向特征</h3>
+      <p>每局独立洗牌，52张无王牌。所有玩家同时获发三张，通过比牌或跟注推进。翻牌前即可弃牌，保留筹码弹性。</p>
+      <span class="tag">双盲 · 比牌机制</span>
+    </div>
+    <div class="card">
+      <h3><i>♥</i> 适用场景</h3>
+      <p>3–6人局最为常见，节奏紧凑。线上版可自动处理牌型排序，降低人为错误，适合希望专注于策略层面的玩家。</p>
+      <span class="tag">休闲 · 小型局</span>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要式唤起 -->
+  <div class="faq-mini">
+    <div class="faq-item">
+      <span class="q">❓ 炸弹比同花顺大？</span>
+      <span class="a">是的，豹子（AAA最大）大于同花顺（AKJ最大）。</span>
+    </div>
+    <div class="faq-item">
+      <span class="q">❓ 235为何特殊？</span>
+      <span class="a">235为不同花色时，可击败豹子（部分规则适用，需事先约定）。</span>
+    </div>
+    <div class="faq-item">
+      <span class="q">❓ 线上有自动比牌？</span>
+      <span class="a">多数平台提供自动比牌与牌型提示，减少争议。</span>
+    </div>
+  </div>
+
+  <!-- 页尾访问提示 -->
+  <div class="footer-note">
+    <p>本站持续整理炸金花的基础规则、变种玩法与常见误区。如果你需要一份清晰的规则参考，可直接阅读 <a href="https://cns-zhajinhua.com">炸金花</a> 专题页中的完整说明。</p>
+  </div>
+</div>
+</body>
+</html>
